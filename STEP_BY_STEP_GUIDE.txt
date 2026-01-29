@@ -1,0 +1,353 @@
+╔════════════════════════════════════════════════════════════════════╗
+║                                                                    ║
+║        TASK 3 - STEP BY STEP SETUP & RUN GUIDE                    ║
+║                                                                    ║
+║        How to Run the User Management System                       ║
+║                                                                    ║
+╚════════════════════════════════════════════════════════════════════╝
+
+
+QUICK START (5 MINUTES)
+════════════════════════════════════════════════════════════════════
+
+STEP 1: VERIFY PHP IS WORKING
+─────────────────────────────────────────────────────────────────────
+
+Run this command in PowerShell (from your task3 folder):
+
+  & "C:\Users\LENOVO\AppData\Local\Microsoft\WinGet\Packages\PHP.PHP.8.3_Microsoft.Winget.Source_8wekyb3d8bbwe\php.exe" -v
+
+Expected output:
+  PHP 8.3.30 (cli) (built: Jan 13 2026 22:48:14)
+  Copyright (c) The PHP Group
+  Zend Engine v4.3.30
+  ...
+
+✅ If you see version info, PHP is working!
+
+
+STEP 2: START THE WEB SERVER
+─────────────────────────────────────────────────────────────────────
+
+Run this command in PowerShell (from your task3 folder):
+
+  & "C:\Users\LENOVO\AppData\Local\Microsoft\WinGet\Packages\PHP.PHP.8.3_Microsoft.Winget.Source_8wekyb3d8bbwe\php.exe" -S localhost:8000
+
+Expected output:
+  [Thu Jan 29 13:13:18 2026] PHP 8.3.30 Development Server (http://localhost:8000) started
+  [Thu Jan 29 13:13:18 2026] Listening on http://localhost:8000
+  [Thu Jan 29 13:13:18 2026] Document root is /path/to/task3
+  
+✅ If you see "started" and "Listening", the server is running!
+⚠️  IMPORTANT: Keep this window open! The server stays running.
+
+
+STEP 3: OPEN THE APPLICATION IN BROWSER
+─────────────────────────────────────────────────────────────────────
+
+Open a NEW browser window and go to:
+  
+  http://localhost:8000/
+
+Expected result:
+  You should see the Task 3 home page with navigation menu
+  and login/register buttons
+
+✅ If you see the home page, the web server is working!
+
+
+STEP 4: CHECK PROJECT FILES
+─────────────────────────────────────────────────────────────────────
+
+Run this command in a NEW PowerShell window:
+
+  & "C:\Users\LENOVO\AppData\Local\Microsoft\WinGet\Packages\PHP.PHP.8.3_Microsoft.Winget.Source_8wekyb3d8bbwe\php.exe" task_verify.php
+
+Expected output:
+  [Long verification report with checkmarks ✅]
+  ...
+  ✅ Successes: 27
+  ⚠️  Warnings: 1
+  ❌ Issues: 0
+  
+  🎉 VERIFICATION PASSED!
+  Status: ✅ PROJECT READY
+  Completion: 96%
+
+✅ If you see "VERIFICATION PASSED", everything is set up correctly!
+
+
+════════════════════════════════════════════════════════════════════
+DETAILED INSTRUCTIONS
+════════════════════════════════════════════════════════════════════
+
+
+PART A: PREPARATION
+────────────────────────────────────────────────────────────────────
+
+1. Open PowerShell
+   • Right-click on desktop
+   • Select "Open PowerShell here" OR
+   • Press Windows key + R, type "powershell", press Enter
+
+2. Navigate to task3 folder
+   Run:
+     cd "C:\Users\LENOVO\OneDrive\Documents\GITHUB-projects\task3"
+   
+   Verify:
+     Get-Location  (should show task3 path)
+     dir           (should show files like index.php, login.php, etc.)
+
+3. Create shorter PHP command alias (optional but helpful)
+   Run:
+     $php = "C:\Users\LENOVO\AppData\Local\Microsoft\WinGet\Packages\PHP.PHP.8.3_Microsoft.Winget.Source_8wekyb3d8bbwe\php.exe"
+   
+   Now you can use: & $php instead of typing full path
+
+
+PART B: VERIFY PROJECT FILES
+────────────────────────────────────────────────────────────────────
+
+1. Check all files are present
+   Run:
+     dir
+
+   You should see:
+     index.php
+     login.php
+     register.php
+     dashboard.php
+     profile.php
+     admin_panel.php
+     php/
+     css/
+     js/
+     database/
+     ... and more files
+
+2. Verify project structure
+   Run:
+     & $php task_verify.php
+
+   Watch for:
+     📋 1. SYSTEM REQUIREMENTS ✅
+     📂 2. PROJECT FILES (30/30) ✅
+     ✅ 4. CODE QUALITY & FEATURES ✅
+     🔐 5. SECURITY FEATURES ✅
+     🗄️  6. DATABASE SCHEMA ✅
+
+   Final line should show:
+     🎉 VERIFICATION PASSED!
+
+
+PART C: START THE WEB SERVER
+────────────────────────────────────────────────────────────────────
+
+1. Start PHP development server
+   Run:
+     & $php -S localhost:8000
+
+   Expected output:
+     [Thu Jan 29 13:13:18 2026] PHP 8.3.30 Development Server
+     [Thu Jan 29 13:13:18 2026] Listening on http://localhost:8000
+     [Thu Jan 29 13:13:18 2026] Document root is C:\Users\LENOVO\OneDrive\Documents\GITHUB-projects\task3
+
+   ✅ Server is running!
+   ⚠️  DO NOT CLOSE THIS WINDOW!
+
+2. In a SECOND PowerShell window, verify server is responding
+   Run:
+     Invoke-WebRequest -Uri "http://localhost:8000/" | Select-Object StatusCode
+   
+   Expected output:
+     StatusCode
+     ----------
+           200
+   
+   ✅ Server is responding (200 = success)!
+
+
+PART D: ACCESS THE APPLICATION
+────────────────────────────────────────────────────────────────────
+
+1. Open web browser
+   • Chrome, Firefox, Edge, or Safari
+
+2. Go to URL:
+   http://localhost:8000/
+
+3. You should see:
+   Home page with welcome message
+   Navigation menu (Home, Login, Register, Dashboard, Admin Panel)
+   Login/Register buttons
+
+4. Try clicking "Login"
+   You should see login form with username and password fields
+
+✅ Application is running!
+
+
+PART E: TEST THE APPLICATION (without database)
+────────────────────────────────────────────────────────────────────
+
+Note: The application needs MySQL for full functionality.
+However, you can test the UI and static pages.
+
+Available pages to test:
+  
+  1. Home Page
+     URL: http://localhost:8000/
+     Click buttons, see if page loads
+  
+  2. Login Page
+     URL: http://localhost:8000/login.php
+     See the login form
+  
+  3. Register Page
+     URL: http://localhost:8000/register.php
+     See the registration form
+  
+  4. CSS/Design
+     All pages should have styling and be mobile-responsive
+
+✅ If pages load and look good, PHP server is working!
+
+
+════════════════════════════════════════════════════════════════════
+COMMON ERRORS & SOLUTIONS
+════════════════════════════════════════════════════════════════════
+
+ERROR 1: "php : The term 'php' is not recognized"
+────────────────────────────────────────────────────────────────────
+CAUSE: PHP is not in your system PATH
+SOLUTION: Use full path or create alias
+  
+  Option A (Full path each time):
+    & "C:\Users\LENOVO\AppData\Local\Microsoft\WinGet\Packages\PHP.PHP.8.3_Microsoft.Winget.Source_8wekyb3d8bbwe\php.exe" -v
+  
+  Option B (Alias - easier):
+    $php = "C:\Users\LENOVO\AppData\Local\Microsoft\WinGet\Packages\PHP.PHP.8.3_Microsoft.Winget.Source_8wekyb3d8bbwe\php.exe"
+    & $php -v
+
+
+ERROR 2: "localhost refused to connect"
+────────────────────────────────────────────────────────────────────
+CAUSE: PHP server is not running
+SOLUTION: Start the server
+  
+  Run (in PowerShell):
+    & $php -S localhost:8000
+  
+  Wait for message:
+    "Development Server started"
+
+
+ERROR 3: "Address already in use"
+────────────────────────────────────────────────────────────────────
+CAUSE: Port 8000 is already being used
+SOLUTION: Use different port or stop other service
+  
+  Option A (Different port):
+    & $php -S localhost:8001
+    Then access: http://localhost:8001/
+  
+  Option B (Find what's using port 8000):
+    netstat -ano | findstr :8000
+    taskkill /PID <PID> /F
+
+
+ERROR 4: "Class 'mysqli' not found"
+────────────────────────────────────────────────────────────────────
+CAUSE: MySQL extension not enabled (happens when using database)
+SOLUTION: Extension is already enabled - if you see this, MySQL isn't installed
+  
+  Status: ✅ FIXED for your system
+  If needed: Install MySQL and run `php install.php`
+
+
+ERROR 5: "Access denied for user 'root'"
+────────────────────────────────────────────────────────────────────
+CAUSE: MySQL not running or not configured
+SOLUTION: Install and start MySQL Server
+  
+  For now: You can still view the static pages
+  Later: Run php install.php after MySQL is installed
+
+
+════════════════════════════════════════════════════════════════════
+WHAT EACH FILE DOES
+════════════════════════════════════════════════════════════════════
+
+ENTRY POINTS (Start here):
+  index.php          - Home/landing page
+  login.php          - User login form
+  register.php       - User registration form
+  dashboard.php      - User list (needs database)
+  profile.php        - User profile (needs database)
+  admin_panel.php    - Admin interface (needs database)
+
+BACKEND (Processing):
+  php/config.php     - Database configuration
+  php/auth.php       - User authentication logic
+  php/users.php      - User management functions
+  php/api.php        - REST API endpoints
+  php/logout.php     - Logout handler
+
+FRONTEND (Display):
+  css/style.css      - Page styling
+  js/script.js       - JavaScript functionality
+
+DATABASE (Data storage - needs MySQL):
+  database/schema.sql - Database structure
+
+UTILITIES (Testing/Setup):
+  install.php        - Setup script (needs MySQL)
+  health_check.php   - System check
+  task_verify.php    - Project verification
+
+
+════════════════════════════════════════════════════════════════════
+NEXT STEPS
+════════════════════════════════════════════════════════════════════
+
+IMMEDIATE (Now):
+  ✅ Run task_verify.php to check project
+  ✅ Start server with: & $php -S localhost:8000
+  ✅ Access: http://localhost:8000/
+  ✅ Browse pages and test UI
+
+SHORT TERM (For full functionality):
+  ⏳ Install MySQL Server from https://dev.mysql.com/downloads/mysql/
+  ⏳ Run: & $php install.php (this creates database)
+  ⏳ Login with: admin / admin123
+  ⏳ Test all features
+
+ADVANCED (For deployment):
+  📖 Read DEPLOYMENT.md
+  🔒 Configure SSL/HTTPS
+  💾 Set up regular backups
+
+
+════════════════════════════════════════════════════════════════════
+KEYBOARD SHORTCUTS
+════════════════════════════════════════════════════════════════════
+
+PowerShell:
+  Ctrl + C        Stop server (closes connection to localhost:8000)
+  Ctrl + L        Clear screen
+  Up Arrow        Previous command
+  Tab             Autocomplete
+
+PHP Server:
+  Ctrl + C        Stop the web server
+
+Browser:
+  F12             Developer tools
+  Ctrl + Shift + I  Inspect element
+  Ctrl + R        Refresh page
+  Ctrl + Shift + R  Hard refresh (clear cache)
+
+
+════════════════════════════════════════════════════════════════════
+That's it! You're ready to go. Follow the steps above to run everything.
+════════════════════════════════════════════════════════════════════
